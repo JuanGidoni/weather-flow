@@ -27,6 +27,10 @@ Web App para obtener el clima actual en tu ubicación o por busqueda por ciudade
 
 ### Version Updates
 
+----- 0.19.1
+
+* [x] Se removieron los //comentarios añadidos a forma de documentar/recalcar que/donde se hizo.
+* [x] Se mejoraron algunas funciones de backend y frontend.
 
 ----- 0.19
 

@@ -17,7 +17,7 @@ body {
   padding-bottom: 40px;
   background-color: #141414;
 }
-
+/* TEXT/Paragraphs styles */
 .h3,
 h3 {
   font-size: 1.56rem
@@ -54,6 +54,7 @@ p {
 .text-gray {
   color:#8a8a8a;
 }
+/* TEXT/Paragraphs styles */
 
 .display-3 {
   font-size: 2.5rem
@@ -103,8 +104,8 @@ p {
 .card-weather .weakly-weather .weakly-weather-item i {
   font-size: 1.2rem
 }
-
  /* CSS: Card Weather style */
+
 /* backgrounds assets */
 .nublado {
   background-image: url('./assets/nublado.png');
@@ -131,6 +132,7 @@ p {
   background-image: url('./assets/soleado.png');
 }
 /* backgrounds assets */
+
 /* body assets */
 .body-soleado {
   background: linear-gradient(0deg, rgba(241,169,70,1) 0%, rgba(245,242,65,0) 100%);
@@ -154,6 +156,7 @@ p {
   background: linear-gradient(0deg, rgba(219,208,173,1) 0%, rgba(128,128,128,0) 100%);
 }
 /* body assets */
+/* extra */
 .map-img {
   width:25px;
   height: 25px;
@@ -172,6 +175,7 @@ p {
   border-right: 5px solid transparent;
   border-top: 5px solid rgb(121, 57, 57);
 }
+/* extra */
 @media all and (max-width:875px){
   .card-weather .weakly-weather .weakly-weather-item {
     flex:1;

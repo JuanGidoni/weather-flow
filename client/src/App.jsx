@@ -21,8 +21,8 @@ useEffect( () => {
 }, [])
 
 const getLocation = async() => {
+  try {
   setLoading(true)
-
   await fetch('https://geolocation-db.com/json/')
   .then( res => res.json())
   .then( result => {
@@ -37,37 +37,53 @@ const getLocation = async() => {
     })
     setLoading(false)
   })
+  } catch (error) {
+    setCode({
+      code: 404,
+      message: error
+    })
+    console.log(error)
+  }
 }
 
 const getWeather = async(result) => {
+  try {
   await fetch(`${BASE_API_URL}/v1/current/${result}`)
-    .then(res => res.json())
-    .then(result => {
-      if(result.name){
-        getForecast(result)
-      }
-      if(result.cod === '404'){
-        setCode({
-          code: result.cod,
-          message: result.message
-        })
-      setAccess(false)
-      setLoading(false)
-      }
-      setWeather(result)
-    })
-    .catch(err => {
+  .then(res => res.json())
+  .then(result => {
+    if(result.name){
+      getForecast(result)
+    }
+    if(result.cod === '404'){
       setCode({
-        code: 404,
-        message: 'Error, algo salio mal con el clima :(',
-        console: err
+        code: result.cod,
+        message: result.message
       })
-      setLoading(false)
+    setAccess(false)
+    setLoading(false)
+    }
+    setWeather(result)
+  })
+  .catch(err => {
+    setCode({
+      code: 404,
+      message: 'Error, algo salio mal con el clima :(',
+      console: err
     })
+    setLoading(false)
+  })
+  } catch (error) {
+    setCode({
+      code: 404,
+      message: error
+    })
+    console.log(error)
+  }
 }
 
 const getForecast = async(result) => {
-  await fetch(`${BASE_API_URL}/v1/forecast/${result.coord.lat}/${result.coord.lon}`)
+  try {
+    await fetch(`${BASE_API_URL}/v1/forecast/${result.coord.lat}/${result.coord.lon}`)
         .then(res => res.json()).then(result => {
           setAccess(true)
           setLoading(false)
@@ -88,6 +104,14 @@ const getForecast = async(result) => {
           })
           setLoading(false)
         })
+  } catch (error) {
+    setCode({
+      code: 404,
+      message: error
+    })
+    console.log(error)
+  }
+  
 }
 
 const dateBuilder = (d) => {

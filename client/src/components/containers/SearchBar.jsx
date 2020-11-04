@@ -16,7 +16,7 @@ const search = evt => {
       s.style.border = '1px solid red'
       setTimeout(() => {
         s.style.border = 'none'
-      }, 2000);
+      }, 2000)
     }else{
         if(evt.type === "click"){
         setLoading(true)
