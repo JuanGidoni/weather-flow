@@ -9,7 +9,6 @@ export default function SearchBar({
     getLocation
 }) {
         
-// funcion flecha para la busqueda del clima segun ciudad
 const search = evt => {
     if(!evt.target.value){
       let s = document.getElementById('sendsearch')
@@ -32,7 +31,7 @@ const search = evt => {
     }
 }
     return (
-        <div className="col-lg-12 d-flex justify-content-center align-items-center mb-1">
+        <div className="col-lg-12 d-flex justify-content-center align-items-center mb-1 sticky-top">
             <button onClick={getLocation} className="btn btn-dark search-btn d-flex flex-row flex-fill mr-1"><img alt="Buscar por mi ubicación" src={MapIMG} className="map-img" /></button>
                 <input 
                 id="sendsearch"

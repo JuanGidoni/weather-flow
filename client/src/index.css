@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  background: #141414;
 }
 body {
   display: -ms-flexbox;
@@ -14,51 +15,13 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
-.stretch-card>.card {
-
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.grid-margin,
-.purchace-popup>div {
-  margin-bottom: 25px
-}
-.row {
-  width: 100%;
-}
-
-
-.card-weather {
-  background: #e1ecff;
-  background-image: linear-gradient(to left bottom, #e7e7e7, #e7e7e7, #e7e7e7, #e7e7e7, #e7e7e7);
-  box-shadow: 0 15px 15px 2px rgba(0,0,0,.1);
-}
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem
-}
-
-.card-weather .weather-date-location {
-  padding: 0 0 38px;
+  background-color: #141414;
 }
 
 .h3,
 h3 {
   font-size: 1.56rem
 }
-
 .h1,
 .h2,
 .h3,
@@ -72,66 +35,76 @@ h4,
 h5,
 h6 {
   font-family: "Poppins", sans-serif;
-  font-weight: 500
-}
-
-.text-gray,
-.card-subtitle,
-.new-accounts ul.chats li.chat-persons a p.joined-date {
-  color: #969696
+  font-weight: 500;
+  color:white;
 }
 
 p {
   font-size: 13px
 }
 
-.text-gray,
-.card-subtitle,
-.new-accounts ul.chats li.chat-persons a p.joined-date {
-  color: #969696
+.link {
+  color:white;
+  text-decoration: none;
 }
-
-.card-weather .weather-data {
-  padding: 0 0 4.75rem
+.link:hover {
+  text-decoration: none;
+  color:darkgray;
 }
-
+.text-gray {
+  color:#8a8a8a;
+}
 
 .display-3 {
   font-size: 2.5rem
 }
 
+ /* CSS: Card Weather style */
+.card-weather {
+  background: #141414;
+  background-image: linear-gradient(to left bottom, #292929, #292929, #292929, #292929, #292929);
+  box-shadow: 0 15px 15px 2px rgba(0,0,0,.1);
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+.card-weather .weather-date-location {
+  padding: 0 0 38px;
+}
 .card-weather .card-body {
   flex: 1 1 auto;
   background-size: cover;
 }
-
 .card-weather .weakly-weather {
   display:flex;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  background: #ffffff;
-  overflow-x: auto
+  background: #141414;
+  overflow-x: auto;
 }
-
 .card-weather .weakly-weather .weakly-weather-item {
   flex: 1;
   border-right: 1px solid #615e5e;
   padding: 1rem;
+  color:white;
   text-align: center
 }
 .card-weather .weakly-weather .weakly-weather-item:last-child {
   border-right: none;
 }
-.mb-0,
-.my-0 {
-  margin-bottom: 0 !important
-}
-
 .card-weather .weakly-weather .weakly-weather-item i {
   font-size: 1.2rem
 }
 
+ /* CSS: Card Weather style */
 /* backgrounds assets */
 .nublado {
   background-image: url('./assets/nublado.png');
@@ -142,11 +115,11 @@ p {
 .soleado {
   background-image: url('./assets/soleado.png');
 }
-.lluvioso {
+.lluvia{
   background-image: url('./assets/lluvia.png');
 }
 .llovizna {
-  background-image: url('./assets/lluvia.png');
+  background-image: url('./assets/llovizna.png');
 }
 .frio {
   background-image: url('./assets/despejado.png');
@@ -190,22 +163,43 @@ p {
   height: 0; 
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid black;
+  border-bottom: 5px solid rgb(218, 156, 106);
 }
 .arrow-down {
   width: 0; 
   height: 0; 
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid black;
+  border-top: 5px solid rgb(121, 57, 57);
 }
 @media all and (max-width:875px){
   .card-weather .weakly-weather .weakly-weather-item {
-    flex:0 50%;
+    flex:1;
     flex-direction: column;
-    padding:0.3rem;
+    padding:3px;
   }
   .card-weather .weather-data{
     padding: 0;
+  }
+  body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #141414;
+  }
+  .stretch-card>.card {
+  
+    width: 100%;
+    max-width: 165px;
+    padding: 5px;
+    margin: 0 auto;
   }
 }

@@ -6,7 +6,6 @@ export default function MyWeather({
     weather,
     getWeather,
     query,
-    loading,
     setQuery,
     styleWeather,
     forecast,
@@ -15,31 +14,6 @@ export default function MyWeather({
     getLocation
 }) {
 
-    const styleForecast = (c) => {
-        if(c >= '200' && c <= '232'){
-              return 'tormenta'
-          } 
-          else if(c >= '300' && c <= '321'){
-              return 'llovizna'
-          } 
-          else if(c >= '500' && c <= '531'){
-              return 'lluvia'
-          } 
-          else if(c >= '600' && c <= '622'){
-              return 'nieve'
-          } 
-          else if(c >= '701' && c <= '781'){
-              return 'atmosfere'
-          } 
-          else if(c === 800){
-              return 'soleado'
-          } 
-          if(c >= '801' && c <= '804'){
-              return 'nublado'
-          }else {
-              return 'soleado'
-          }
-    }
     return (
         <div>
             <div className="row d-flex justify-content-center align-items-center mx-auto">
@@ -51,34 +25,36 @@ export default function MyWeather({
               getLocation={getLocation}
               />
             <div className="col-12"> 
-                <div className="card card-weather">
                 {(typeof weather.main != "undefined") ? (
-                      <div>
-                    <div className={(typeof weather.main != "undefined") ? ('card-body '+styleWeather(weather.weather[0].id)) : 'card-body'}>
-                        <div className="weather-date-location">
-                            <h3>{weather.name}, {weather.sys.country}</h3>
+                <div className="card card-weather">
+                    <div className={(typeof weather.main != "undefined") ? (`card-body ${styleWeather(weather.weather[0].id)}`) : 'card-body'}>
+                        <div className="weather-date-location d-flex flex-column justify-content-center align-items-start">
+                            <h3 className="d-flex justify-content-center align-items-center">{weather.name}, {weather.sys.country}<img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} title={weather.weather[0].description} alt={weather.weather[0].description}/></h3>
                             <p className="text-gray"> <span className="weather-date">{day}</span></p>
+                            <p className="text-gray"> <span className="weather-date">Lat: {weather.coord.lat}, Lon: {weather.coord.lon}</span></p>
                         </div>
-                        <div className="weather-data d-flex">
+                        <div className="weather-data d-flex align-items-start justify-content-center">
                             <div className="mr-auto">
+                                <div className="temp d-flex justify-content-center align-items-center text-white">
                                 <h4 className="display-3">{Math.floor(weather.main.temp)}<span className="symbol">°</span>C</h4>
-                                <p>{weather.weather[0].description} </p>
-                                <p>Min: {Math.floor(weather.main.temp_min)}<span className="symbol">°</span>C</p>
-                                <p>Max: {Math.round(weather.main.temp_max)}<span className="symbol">°</span>C</p>
-                                <p>Viento: {Math.floor(weather.wind.speed*3.64)}<span className="symbol"> km</span>/h</p>
-                                <p className="p-0 m-0">Humedad: {weather.main.humidity}<span className="symbol"> %</span></p>
-                            </div>
+                                <div className="flex-column ml-2">
+                                <p className="mb-0 p-1 d-flex align-items-center justify-content-center">{Math.round(weather.main.temp_max)}° <span className="arrow-up ml-1"></span></p>
+                                <p className="mb-0 p-1  d-flex align-items-center justify-content-center">{Math.floor(weather.main.temp_min)}° <span className="arrow-down ml-1"></span> </p>
+                                </div>
+                                </div>
+                                <p className="text-gray">{weather.weather[0].description} </p>
+                              </div>
                         </div>
                     </div>
                     <div className="card-body p-0">
                     {(typeof forecast.lat != "undefined") ? (
                     <div className="d-flex weakly-weather">
                           {forecast.daily.map((day, i)=>(
-                            i === 0 ?  false : 
+                            i === 0 || i === 6 || i === 7 ? false : 
                               <div className="weakly-weather-item" key={day.dt}>
-                                  <div className="d-flex justify-content-center align-items-center text-muted">
+                                  <div className="d-flex flex-column justify-content-center align-items-center text-muted">
                                     <p className="mb-0">{dateBuilder(new Date(day.dt*1000))}</p>
-                                    <p className="mb-0 ml-1">{styleForecast(day.weather[0].id)}</p>
+                                    <p className="mb-0 ml-1"><img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}.png`} alt={day.weather[0].description} title={day.weather[0].description} /></p>
                                     
                                   </div>
                               <div className="d-flex align-items-center justify-content-center flex-column">
@@ -95,7 +71,6 @@ export default function MyWeather({
                     ) : 
                     (<div>Error en la carga del clima.</div>)
                     }
-                </div>
             </div>
         </div>
         </div>

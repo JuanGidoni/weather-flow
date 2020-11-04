@@ -3,10 +3,10 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Weather from './components/weather'
 import Error from './components/Error'
 import Loader from 'react-loader-spinner'
+import { BASE_API_URL } from './utils/constants';
 
 function App() {
 
- // Declaro Constantes para inicializar useState
 const [weather, setWeather] = useState({})
 const [forecast, setForecast] = useState({})
 const [current, setCurrent] = useState({})
@@ -15,7 +15,6 @@ const [access, setAccess] = useState(false)
 const [loading, setLoading] = useState(true)
 const [query, setQuery] = useState('')
 
-// Declaro useEffect (para obtener ubicacion y clima/pronóstico)
 useEffect( () => { 
       getLocation()
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,14 +32,15 @@ const getLocation = async() => {
   .catch(err => {
     setCode({
       code: 404,
-      message: 'Error, algo salio mal con la ubicación :('
+      message: 'Error, algo salio mal con la ubicación :(',
+      console: err
     })
     setLoading(false)
   })
 }
 
 const getWeather = async(result) => {
-  await fetch(`http://localhost:5000/v1/current/${result}`)
+  await fetch(`${BASE_API_URL}/v1/current/${result}`)
     .then(res => res.json())
     .then(result => {
       if(result.name){
@@ -59,14 +59,15 @@ const getWeather = async(result) => {
     .catch(err => {
       setCode({
         code: 404,
-        message: 'Error, algo salio mal con el clima :('
+        message: 'Error, algo salio mal con el clima :(',
+        console: err
       })
       setLoading(false)
     })
 }
 
 const getForecast = async(result) => {
-  await fetch(`http://localhost:5000/v1/forecast/${result.coord.lat}/${result.coord.lon}`)
+  await fetch(`${BASE_API_URL}/v1/forecast/${result.coord.lat}/${result.coord.lon}`)
         .then(res => res.json()).then(result => {
           setAccess(true)
           setLoading(false)
@@ -82,13 +83,13 @@ const getForecast = async(result) => {
         }).catch(err => {
           setCode({
             code: 404,
-            message: 'Error, algo salio mal con el pronóstico :('
+            message: 'Error, algo salio mal con el pronóstico :(',
+            console: err
           })
           setLoading(false)
         })
 }
 
-//Declaro una funcion flecha para crear la fecha actual segun el parametro obtenido
 const dateBuilder = (d) => {
 
     let months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -98,13 +99,11 @@ const dateBuilder = (d) => {
     let date = d.getDate()
     let month = months[d.getMonth()]
     let year = d.getFullYear()
-    // retorno nombre dia, numero, mes y año
     return `${day} ${date}, ${month} ${year}`
 }
 
 
   return (  
-    // Utilizando react-router-dom (creo un switch, para saber si se permitio la geolocalización o no)
     <Router>
         <Switch>
           { loading ? 
@@ -120,7 +119,6 @@ const dateBuilder = (d) => {
             <Route
                 path='/'
                 render={(props) => (
-                  // envio al componente funcion Weather, diferentes props para ser utilizadas luego
                   <Weather {...props}
                    weather={weather}
                    forecast={forecast}
@@ -152,8 +150,8 @@ const dateBuilder = (d) => {
           />
           }
         </Switch>  
-          <div className="footer text-center mt-2">
-            <p>Developed by <a href="https://github.com/JuanGidoni">Juan Ignacio Gidoni</a> with React and Node/Express. Using: <a href="https://openweathermap.org/api">OpenWeatherMap</a></p>
+          <div className="footer text-center mt-2 text-white">
+            <p>Developed by <a className="link"href="https://github.com/JuanGidoni">Juan Ignacio Gidoni</a> with React and Node/Express. Using: <a className="link" href="https://openweathermap.org/api">OpenWeatherMap</a></p>
           </div>
     </Router>
   );

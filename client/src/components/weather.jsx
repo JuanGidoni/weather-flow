@@ -5,7 +5,6 @@ import MyWeather from './containers/MyWeather'
 export default function Weather({
   weather,
   day,
-  loading,
   forecast,
   code,
   getLocation,
@@ -34,7 +33,11 @@ const styleWeather = (c) => {
     x.className = 'body-llovizna'
       return 'llovizna'
   } 
-  else if(c >= '500' && c <= '531'){
+  else if(c >= '500' && c <= '501'){
+    x.className = 'body-llovizna'
+      return 'llovizna'
+  } 
+  else if(c >= '502' && c <= '531'){
     x.className = 'body-lluvia'
       return 'lluvia'
   } 
@@ -50,7 +53,7 @@ const styleWeather = (c) => {
     x.className = 'body-soleado'
       return 'soleado'
   } 
-  if(c >= '801' && c <= '804'){
+  else if(c >= '801' && c <= '804'){
     x.className = 'body-nublado'
       return 'nublado'
   }else {

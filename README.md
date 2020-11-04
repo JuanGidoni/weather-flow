@@ -28,6 +28,13 @@ Web App para obtener el clima actual en tu ubicación o por busqueda por ciudade
 ### Version Updates
 
 
+----- 0.19
+
+* [x] Se arreglaron algunos bugs visuales en mobile y se adapto el diseño a "dark mode".
+* [x] Ahora el pronóstico es a 5 días. 
+* [x] Se implementaron mejoras visuales, utilizando los iconos provenientes de OpenWeatherMap y se mejoraron las imagenes utilizados
+en el fondo del componente "MyWeather".
+
 ----- 0.18
 
 * [x] Cambios en el código. (Componentes y Funciones)
