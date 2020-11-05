@@ -4,6 +4,9 @@ Web App para obtener el clima actual en tu ubicación o por busqueda por ciudade
 
 // Se agregaron comentarios en varias lineas de código para respaldar y documentar.
 
+## test online
+
+Depolyed with Heroku. https://weather-fullstack.herokuapp.com/
 
 ## test on your localhost
 
