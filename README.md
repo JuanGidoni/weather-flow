@@ -2,7 +2,6 @@
 
 Web App para obtener el clima actual en tu ubicación o por busqueda por ciudades/pais.
 
-// Se agregaron comentarios en varias lineas de código para respaldar y documentar.
 
 ## test online
 
